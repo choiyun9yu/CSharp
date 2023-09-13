@@ -14,3 +14,24 @@
 **Xamarin/Mono**는 IOS 및 Android를 포함한 모든 주요 모바일 운영체제에서 앱을 실행하기 위한 .NET 구현체
 
 **.NET Standard**는 .NET 구현에서 공통적인 API의 공식 사양이다. 이렇게 하면 동일한 코드와 라이브러리를 다른 구현에서 실행 할 수 있다.
+
+
+## .NET
+
+    # 출력
+    var name = "Ana";
+    Console.WriteLine("Hello" + " " + name + "!");
+    >> Hello Ana!
+
+    # 포맷 스트링
+    Console.WriteLine($"Hello {name}!");
+    >> Hello Ana!
+
+    # 대문자 전환
+    Console.WriteLine($"Hello {name.ToUpper()}!");
+
+    # 반복문
+    var names = new[] {"Ana", "Felipe", "Emillia"};
+    foreach (var name in names) {
+        Console.WriteLine($"Hello {name.ToUpper()}!");
+    }
