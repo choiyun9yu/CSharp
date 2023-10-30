@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc6fd3b8-c9b1-429d-9ed6-b54c348f7ded" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gRPC.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dotNET.md" beforeDir="false" afterPath="$PROJECT_DIR$/dotNET.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +37,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/choiyungyu/mygit",
+    "last_opened_file_path": "/home/choiyungyu/mygit/Csharp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -58,6 +57,7 @@
       <workItem from="1698279781462" duration="827000" />
       <workItem from="1698281184896" duration="415000" />
       <workItem from="1698283160386" duration="33000" />
+      <workItem from="1698624529335" duration="1252000" />
     </task>
     <servers />
   </component>
