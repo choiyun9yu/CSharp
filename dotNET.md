@@ -9,9 +9,23 @@ Microsoft에서 개발한 프로그래밍 플랫폼이다. 다양한 운영 체�
 ### 2-1. 패키지 의존성 설정 (.csproj 파일 안에서)
 .csproj은 C# 프로젝트 파일의 확장자이다. 이 파일은 XML 형식으로 프로젝트의 정보, 종속성, 빌드 설정, 대상 프레임 워크 버전 등을 설정한다.
 
+    // 패키지 참조
     <ItemGroup>
       <PackageReference Include="PackageName" Version="1.0.0" />
     </ItemGroup>
+
+#### .csproj 파일에 의존성 설정
+
+    // 파일 추가: 프로젝트에 포함할 파일을 지정하는 데 사용(소스 코드 파일, 리소스 파일, 콘텐츠 파일 등)
+    <ItemGroup>
+        <Compile Include="File1.cs" />
+        <Compile Include="Image.png" />
+    </ItemGroup>
+
+    // 프로젝트 참조: 다른 프로젝트를 참조하는 경우에 사용
+    <ItemGroup>
+        <ProjectReference Include="Path\AnotherProject.csproj" />
+    </ItemGroup>정
 
 ### 2-2. 패키지 설치 (NuGet CLI)
     // .csproj 파일 안에서 선언했다면 따로 설치할 필요는 없다.
