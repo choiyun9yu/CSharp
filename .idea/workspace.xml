@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc6fd3b8-c9b1-429d-9ed6-b54c348f7ded" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/SignalR.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dotNET.md" beforeDir="false" afterPath="$PROJECT_DIR$/dotNET.md" afterDir="false" />
     </list>
@@ -58,7 +59,9 @@
       <workItem from="1698279781462" duration="827000" />
       <workItem from="1698281184896" duration="415000" />
       <workItem from="1698283160386" duration="33000" />
-      <workItem from="1698624529335" duration="1558000" />
+      <workItem from="1698624529335" duration="1682000" />
+      <workItem from="1698627891255" duration="2071000" />
+      <workItem from="1699402052338" duration="327000" />
     </task>
     <servers />
   </component>
