@@ -23,3 +23,33 @@ DotNetty는 NuGet 패키지로 제공되므로 패키지 관리자를 사용하�
 ## 4. How to use? 
 
     
+## 5. etc
+
+### 의존성 주입(Dependency Injection, DI)
+의존성 주입은 객체 지향 프로그래밍에서 객체 간의 의존성을 외부에서 주입하는 디자인 패턴이다. 이 패턴은 코드를 느슨하게 결합하고 재사용성을 높이며 테스트 용이성을 개선하는데 도움이 된다.
+#### 핵심 개념
+- 의존성: 한 클래스가 다른 클래스에 의존할 때, 이를 의존성이라고 한다.
+- 의존성 주입: 클래스가 직접 의존하는 객체를 생성하지 않고 외부에서 주입받는 것을 말한다. 
+
+#### .NET Core에서 의존성 주입 예시
+    // 서비스 컨테이너 구성
+    var serviceProvider = new ServiceCollection()
+    .AddSingleton<IEngine, GasolineEngine>()
+    .AddSingleton<Car>()
+    .BuildServiceProvider();
+    
+    // 서비스 가져오기
+    var car = serviceProvider.GetRequiredService<Car>();
+    
+    // 사용
+    car.Start();
+
+### .Service
+
+    var myService = host.Services.GetService(typeof(MyServiceType));
+
+.Service는 ASP.NET Core에서 제공하는 프레임워크의 일부이다. ASP.NET Core에서 Host 또는 WebHost를 생성하면, IServiceProvider 인터페이스를 구현한 서비스 컨테이너가 생성된다. 이 서비스 컨테이너는 애플리케이션 전체에서 사용 가능한 서비스를 관리하고 제공한다.
+
+.Services는 이 서비스 컨테이너에서 서비스를 검색하는 데 사용되는 속성이다. 주로 의존성 주입(Dependency Injection)을 통해 서비스를 사용할 때 쓰인다. 
+
+위 코드는 MyServiceType이라는 서비스를 서비스 컨테이너에서 가져오는 코드이다. 이때 host는 일반적으로 IHost 또는 IWebHost인터페이스를 구현한 개체일 것이다.
