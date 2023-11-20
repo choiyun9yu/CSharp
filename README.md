@@ -8,6 +8,22 @@
 그러나 .NET Core가 등장하면서 크로스 플랫폼 및 경량화를 위한 접근 방식이 도입되었고 .NET Core 위에서 동작하는 웹 프레임워크로 ASP.NET Core라는 기술 스택이 등장했다.
 최근에는 .NET5 이후로는 .NET Framework와 .NET Core가 통합되어 ASP.NET Core라는 말은 사라지고 ASP.NET라는 기술 스택으로 부르게 되었다..
 
+    dotnet --list-sdks              // 설치된 .NET SDK 목록 확인
+    dotnet new webapi -f net7.0     // webapi 프로젝트 .NET7.0으로 만들기
+######
+    webapi-project
+      ├── Controllers               // HTTP 엔드포인트로 노출되는 공용 메서드가 있는 클래스 포함
+      ├── Program.cs                // 애플리케이션의 관리되는 진입점을 포함하는 서비스와 앱의 HTTP 요청 파이프라인 구성
+      ├── Properties
+      ├── WeatherForecast.cs
+      ├── appsettings.Development.json
+      ├── appsettings.json          // 애플리케이션 설정 정보 포
+      ├── obj
+      └── webapi-project.csproj     // 프로젝트 구성에 대한 메타 데이터 포함
+
+
+    
+
 ### 1-1. .NET 7 vs C# 7.0 
 .NET은 개발 플랫폼이고 C#은 프로그래밍 언어이다. 따라서 개발 플랫폼의 버전이 있고 프로그래밍 언어의 버전이 있을 뿐이지 둘이 반드시 일치할 필요는 없다. 
 
