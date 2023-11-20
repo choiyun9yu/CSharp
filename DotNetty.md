@@ -22,34 +22,23 @@ DotNetty는 NuGet 패키지로 제공되므로 패키지 관리자를 사용하�
   
 ## 4. How to use? 
 
-    
+
+
+<br>
+
 ## 5. etc
 
-### 의존성 주입(Dependency Injection, DI)
-의존성 주입은 객체 지향 프로그래밍에서 객체 간의 의존성을 외부에서 주입하는 디자인 패턴이다. 이 패턴은 코드를 느슨하게 결합하고 재사용성을 높이며 테스트 용이성을 개선하는데 도움이 된다.
-#### 핵심 개념
-- 의존성: 한 클래스가 다른 클래스에 의존할 때, 이를 의존성이라고 한다.
-- 의존성 주입: 클래스가 직접 의존하는 객체를 생성하지 않고 외부에서 주입받는 것을 말한다. 
+### 5-1. Bootstrap
+DotNetty에서 Bootstrap은 네트워크 어플리케이션을 설정하고 시작하는 데 사용되는 클래스이다. Bootstrap 클래스는 주로 클라이언트 및 서버 측의 부트스트래핑을 담당한다.
+- 그룹 설정('Group'): 클라이언트 또는 서버의 이벤트 루프 그룹을 설정한다. EventLoopGroup은 이벤트 루프의 집합으로, 네트워크 이벤트를 처리하고 스레드 관리
+- 채널 타입 및 핸들러 설정('Channel'): 클라이언트 또는 서버 채널의 종류를 설정하고 초기화를 담당하는 'Channel'클래스 지정
+- 채널 파이프라인 설정('Handler'): 클라이언트 또는 서버의 채널 파이프라인을 설정한다. 핸들러를 추가하여 데이터를 처리하고 이벤트 수신
 
-#### .NET Core에서 의존성 주입 예시
-    // 서비스 컨테이너 구성
-    var serviceProvider = new ServiceCollection()
-    .AddSingleton<IEngine, GasolineEngine>()
-    .AddSingleton<Car>()
-    .BuildServiceProvider();
-    
-    // 서비스 가져오기
-    var car = serviceProvider.GetRequiredService<Car>();
-    
-    // 사용
-    car.Start();
+#### Group
+그룹은 채널의 집합을 나타낸다. 서버에서 여러 클라이언트 연결을 관리하거나, 클라이언트에서 여러 서버에 연결할 때 사용된다. 채널 그룹은 채널이 생성되거나 닫힐 때 자동으로 관리된다.
 
-### .Service
+#### Channel
+채널은 네트워크 통신의 입출력이나 이벤트를 다루는 객체이다. 네트워크에서 데이터를 읽고 쓰는데 사용되며, 채널 파이프라인에 속한 한들러에 의해 처리된다.
 
-    var myService = host.Services.GetService(typeof(MyServiceType));
-
-.Service는 ASP.NET Core에서 제공하는 프레임워크의 일부이다. ASP.NET Core에서 Host 또는 WebHost를 생성하면, IServiceProvider 인터페이스를 구현한 서비스 컨테이너가 생성된다. 이 서비스 컨테이너는 애플리케이션 전체에서 사용 가능한 서비스를 관리하고 제공한다.
-
-.Services는 이 서비스 컨테이너에서 서비스를 검색하는 데 사용되는 속성이다. 주로 의존성 주입(Dependency Injection)을 통해 서비스를 사용할 때 쓰인다. 
-
-위 코드는 MyServiceType이라는 서비스를 서비스 컨테이너에서 가져오는 코드이다. 이때 host는 일반적으로 IHost 또는 IWebHost인터페이스를 구현한 개체일 것이다.
+#### Handler
+핸들러는 네트워크 이벤트를 처리하고, 데이터를 변환하거나 가공하는 역할을 수행한다. 채널 파이프라인에 여러 핸들러를 추가하여 데이터를 처리하는 흐름을 정의할 수 있다. 인바운드(입력) 핸들러와 아웃바운드(출력) 핸들러로 나뉜다. 인바운드 핸들러는 데이터를 읽고 처리하고, 아웃바운드 핸들러는 데이터를 쓰기 전에 가공한다.
