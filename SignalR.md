@@ -17,6 +17,8 @@ Microsoft에서 개발한 실시간 웹 응용 프로그램을 구축하기 위�
 
 ## 2. [예제] 실시간 채팅
 
+[example](https://learn.microsoft.com/ko-kr/aspnet/core/tutorials/signalr?view=aspnetcore-8.0&tabs=visual-studio)
+
 1) web-app project 만들기
 2) SignalR Client Library 추가
 3) SignalR Hub 만들기
