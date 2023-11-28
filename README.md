@@ -1,5 +1,5 @@
 # .NET
-.NET은 Microsoft의 개발 플랫폼이며, 크로스 플랫폼 애플리케이션을 개발하기 위한 도구 및 런타임을 제공한다. 최근에는 ASP.NET Core라고 부른다. 최신 클라우드 사용, 인터넷 연결 앱을 빌드하기 위한 플랫폼 간 고성능 오픈 소스 프레임워크이다.
+.NET은 Microsoft의 개발 플랫폼이며, 크로스 플랫폼 애플리케이션을 개발하기 위한 도구 및 런타임을 제공한다. 최신 클라우드 사용, 인터넷 연결 앱을 빌드하기 위한 플랫폼 간 고성능 오픈 소스 프레임워크이다.
 
 ASP.NET Core를 사용하여 다음과 같은 작업을 수행할 수 있다.
 - 웹앱 및 서비스, IoT 앱 및 모바일 백 엔드 빌드
@@ -8,9 +8,9 @@ ASP.NET Core를 사용하여 다음과 같은 작업을 수행할 수 있다.
 - .NET Core에서 실행
 
 ####  ASP.NET
-**.NET**은 플랫폼이고 과거 .NET Framework가 웹 응용 프로그램을 개발하는 플랫폼이었다. 이때 사용하는 기술 스택을 ASP.NET이라고 했다.
+**.NET**은 플랫폼이다. 과거에는 .NET Framework가 웹 응용 프로그램을 개발하는 플랫폼이었다. 이때 사용하는 기술 스택을 ASP.NET이라고 했다.
 그러나 .NET Core가 등장하면서 크로스 플랫폼 및 경량화를 위한 접근 방식이 도입되었고 .NET Core 위에서 동작하는 웹 프레임워크로 ASP.NET Core라는 기술 스택이 등장했다.
-최근에는 .NET5 이후로는 .NET Framework와 .NET Core가 통합되어 ASP.NET Core라는 말은 사라지고 ASP.NET라는 기술 스택으로 부르게 되었다..
+최근에는 .NET5 이후로는 .NET Framework와 .NET Core가 통합되어 ASP.NET Core라는 말은 사라지고 ASP.NET라는 기술 스택으로 부르게 되었다.
 
 ### .NET 7.0 vs C# 7
 .NET은 개발 플랫폼이고 C#은 프로그래밍 언어이다. 따라서 개발 플랫폼의 버전이 있고 프로그래밍 언어의 버전이 있을 뿐이지 둘이 반드시 일치할 필요는 없다.
@@ -21,17 +21,34 @@ ASP.NET Core를 사용하여 다음과 같은 작업을 수행할 수 있다.
 .NET SDK(Software Development Kit)은 .NET 어플리케이션을 개발, 빌드, 테스트 및 배포하는데 필요한 도구와 라이브러리의 모음이다. 주요 구성 요소는 다음과 같다.
 - 컴파일러(C# 및 F#): C# 및 F# 언어를 사용하여 작성된 코드를 실행 파일로 변환하는 컴파일러가 포함되어 있다.
 - 런타임(CLR, Common-Language Runtime): .NET 프로그램이 실행되는 가상 머신을 제공한다. CLR은 메모리 관리, 예외처리, 스레드 관리 등의 작업을 수행한다.
-- 라이브러리 및 네임스페이스: .NET 어플리케이션에서 사용할 수 있는 다양한 라이브러리와 네임스페이스가 포함되어 있다. 
+- 라이브러리 및 네임스페이스: .NET 어플리케이션에서 사용할 수 있는 다양한 라이브러리와 네임스페이스가 포함되어 있다.
 - 도구(dotnet 명령어): .NET CLI(Command Line Interface)를 통해 프로젝트를 생성, 빌드, 테스트, 실행하는 등의 작업을 수행할 수 있는 명령어 제공
 
+#### 네임스페이스(namespace)
+네임스페이스는 코드의 구조를 조직화하고 겹치지 않는 이름을 만들기 위한 일종의 컨테이너이다. 변수명 충돌방지, 코드 구조화, 가독성 및 유지보수성 향상을 위해 사용한다.  
+
+Java의 패키지 개념과 유사하지만 다른 점도 있다. Java의 'package'는 파일 시스템의 디렉토리 구조와 일치하며, 각각의 클래스는 해당 패키지의 디렉토리에 위치한다. 그러나 C#의 namespace는 파일의 물리적인 위치와 네임스페이스의 구조가 직접적으로 일치하진 않다.
+
 ### 1-1. .NET CLI
+
+    # Microsoft GPG 키 가져오기
+    % wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+    % sudo dpkg -i packages-microsoft-prod.deb
+
+    # 설치
+    % sudo apt-get update
+    % sudo apt-get install -y dotnet-sdk-8.0  // .NET 8.0 설치
+    % dotnet --version  // 설치 확인
+
+    # 프로젝트 생성
     % dotnet --info         // .NET SDK 정보 출력
     % dotnet --list-sdks    // 설치된 .NET SDK 목록 확인
 
-    % dotnet new webapi -f net{버전} -0 {프로젝트명}   // webapi 프로젝트 .NET7.0으로 만들기
+    % dotnet new webapi -f net{버전} -o {프로젝트명}   // webapi 프로젝트 .NET7.0으로 만들기
 
     % dotnet watch run      // 디버깅(?) 모드로 실행 
 
+    # 프로젝트 배포
     % dotnet build          // 프로젝트 빌드
     % dotnet run            // 프로젝트 실행
     % dotnet test           // 테스트 실행
