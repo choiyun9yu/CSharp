@@ -49,18 +49,143 @@ Microsoft에서 개발한 실시간 웹 응용 프로그램을 구축하기 위�
         }
     }
 
-ChatHub 클래스는 SignalRHub 클래스를 상속받는다. Hub 클래스는 연결, 그룹 및 메시징을 관리한다. 
+ChatHub 클래스는 SignalRHub 클래스를 상속받는다. Hub 클래스는 연결, 그룹 및 메시징을 관리한다. 연결된 클라이언트에서 SendMessage 메서드를 호출하여 모든 클라이언트에 메시지를 보낼 수 있다.
 
-연결된 클라이언트에서 SendMessage 메서드를 호출하여 모든 클라이언트에 메시즈를 보낼 수 있다.
+### 2-4. SignalR 구성
 
-#### /Hubs/ChatHub.cs
+SignalR에 SignalR 요청을 전달하도록 SignalR 서버를 구성해야 한다. 아래 코드는 SignalR을 ASP.NET Core 종속성 주입 및 라우팅 시스템 추가하는 코드이다.
 
-### 2-4. SignalR 사용 프로젝트 구성
+#### /Program.cs or Startup.cs
 
-### 2-5. 모든 클라이언트에서 연결된 모든 클라이언트로 메시지 보내는 코드 추가
+    using SignalRChat.Hubs;
+    ...
+    builder.Services.AddSignalR();
+    ...
+    app.MapHub<ChatHub>("/chatHub");
 
+### 2-5. SignalR 클라이언트 코드 추가
 
+#### SignalRContainer.jsx
+    import React, {useState, useEffect} from 'react'
+    import * as signalR from '@microsoft/signalr';
+    
+    export const SignalRContext = React.createContext({})
+    
+    export const SignalRProvider = ({ children }) => {
+    const [ connStt, setConnStt ] = useState('init');
+    const [ connection, setConnection ] = useState(null);
+    
+        useEffect(() => {
+            // 1. HubConnectionBuilder를 사용하여 SignalR Hub 연결을 위한 객체 생성
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl('http://localhost:5000/chatHub') // SignalR Hub의 URL 설정
+                .build(); // HubConnection 객체 생성
+            // connection.invoke('SayHello');
+    
+            // 2. SignalR Hub 연결 시작
+            connection
+                .start()
+                .then(async () => {
+                    setConnStt('connected');
+                    console.log('SignalR 연결 성공');   // Hub 연결 시작
+                    // const droneIdList = await connection.invoke('GetDroneIds'); // 서버측 메소드 GetDroneIds 실행하고 반환값 받음
+                    // console.log(droneIdList);
+                })
+                .catch(error => {
+                    setConnStt('error');
+                    console.error('SignalR 연결 실패: ', error);    //
+                });
+    
+            setConnection(connection);
+    
+            return () => {
+                connection.stop();
+            };
+        }, []);
+    
+        // 3. SignalR을 사용하여 메시지를 서버로 보내는 역할
+        const sendMessage = (userInput, messageInput) => {
+            connection
+                .invoke("SendMessage", userInput, messageInput)   // SignalR 커넥션을 통해 서버측 "SendMessage" 메서드를 호출하고 사용자 입력과 메시지 입력을 전달한다.
+                .catch(error => console.error(error.toString()));
+        };
+    
+        // 4. SignalRContext.Provider로 컨텍스트 값을 하위 컴포넌트에 전달
+        return (
+            <SignalRContext.Provider value={{ sendMessage, connection }}>
+                {children}
+            </SignalRContext.Provider>
+        );
+    }
 
+#### ChatPage.jsx (하위 컴포넌트)
+    import React, { useState, useContext } from 'react';
+    import {SignalRContext} from "../GCS/SignalRContainder";
+    
+    const ChatPage = () => {
+    const [user, setUser] = useState('');
+    const [message, setMessage] = useState('');
+    const [messages, setMessages] = useState([]);
+    const { sendMessage, connStt } = useContext(SignalRContext);
+    
+        const handleUserChange = (e) => {
+            setUser(e.target.value);
+        };
+    
+        const handleMessageChange = (e) => {
+            setMessage(e.target.value);
+        };
+    
+        const handleSendMessage = () => {
+            if (user && message) {
+                sendMessage(user, message)
+                const newMessage = `${user}: ${message}`;
+                setMessages([...messages, newMessage]);
+                // 메시지를 전송한 후 입력 필드 초기화
+                setUser('');
+                setMessage('');
+            }
+        };
+    
+        return (
+            <div className="container">
+                <div className="flex flex-column p-1">
+                    <div className="text-white">Name</div>
+                    <div className="ml-7">
+                        <input type="text" value={user} onChange={handleUserChange} />
+                    </div>
+                </div>
+    
+                <div className="flex flex-column p-1">
+                    <div className="text-white">Message</div>
+                    <div className="ml-2">
+                        <input type="text" className="w-100" value={message} onChange={handleMessageChange} />
+                    </div>
+                </div>
+    
+                <div className="flex-column p-1">
+                    <div className="text-end text-white">
+                        <input type="button" id="sendButton" value="Send Message" onClick={handleSendMessage} />
+                    </div>
+                </div>
+    
+                <hr />
+    
+                <div className="flex-row p-1 text-white">
+                    <div className="col-6">
+                        <ul>
+                            {messages.map((msg, index) => (
+                                <li key={index}>{msg}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+    
+            </div>
+        );
+    };
+    
+    export default ChatPage;
 
 
 
