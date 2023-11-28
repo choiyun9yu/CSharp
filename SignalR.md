@@ -15,7 +15,7 @@ Microsoft에서 개발한 실시간 웹 응용 프로그램을 구축하기 위�
 
 -   **전송 프로토콜**: SignalR은 여러 가지 전송 프로토콜을 사용하여 클라이언트와 서버 간의 통신을 처리합니다. 이 중 웹소켓(WebSockets)이 가장 효율적이며 실시간 통신에 적합한 프로토콜입니다.
 
-## 2. [예제] 
+## 2. [예제] ChatHub 예제
 [자습서](https://learn.microsoft.com/ko-kr/aspnet/core/tutorials/signalr?view=aspnetcore-7.0&tabs=visual-studio)
 
 1) 웹 프로젝트 만들기
