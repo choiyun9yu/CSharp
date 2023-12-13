@@ -1,4 +1,4 @@
-# CSharp Part1
+# C# Study
 [C# Study](https://www.csharpstudy.com/)
 
 ## 1. C# program source code example
