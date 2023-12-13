@@ -286,6 +286,51 @@
 - 특히 루프 안에서 계속 문자열을 추가 변경하는 코드에서는 string 대신 StringBuilder를 사용해야 한다.
 
 ## 6. 열거형 enum
+enum은 여러개의 상수를 하나의 컨테이너에서 관리하기 위해 사용하는 자료형이다. 
+기본적으로 열거형 멤버의 연결된 상수 값은 int형식이다. 0으로 시작하고 정의 텍스트 순서에 따라 1씩 증가한다. 다른 정수 숫자 형식을 열거형 형식의 기본 형식으로 명시적으로 지정할 수 있다.
+
+    enum Season
+    {
+      Spring, // 0
+      Summer, // 1
+      Autumn, // 2
+      Winter  // 3
+    }
+
+### IEnumerable
+C#에서 IEnumerable은 반복할 수 있는 컬렉션을 나타내는 인터페이스이다. IEnumerable 인터페이스를 구현하는 컬렉션은 반복자를 통해 요소에 액세스할 수 있다. 
+
+
+### 6-2. enum의 사용
+enum 타입은 숫자형 타입과 호환이 가능하다. 만약 enum 타입의 변수를 int로 캐스팅(주:Casting - 한 타입을 다른 타입으로 변경하는 것, 타입 변환이 실패할 수도 있다.)하면 해당 enum값의 숫자 값을 얻게 된다. 또한 enum 타입의 변수는 enum 리터럴값과 서로 비교할 수 있다.  
+아래 코드는 enum 변수 myCity가 리터럴 City.Seoul과 같은지 체크하는 예제이다.
+
+    class Program
+    {
+      enum City
+      {
+        Seoul,      // 0
+        Daejun,     // 1
+        Busan = 5,  // 5
+        Jeju = 10,  // 10
+      }
+
+      static void Main(string[] args)
+      {
+        City myCity;
+
+        // enum 타입에 값을 대입하는 방법
+        myCity = City.Seoul;
+
+        // enum을 int로 변환(Casting)하는 방법: (int)를 앞에 지정
+        int cityValue = (int) myCity;
+
+        if (myCitty == City.Seoul) // enum 값을 비교하는 방법
+        {
+          Console.WriteLine("Welcome to Seoul");
+        }
+      }
+    }
 
 
 ## 7. 연산자
