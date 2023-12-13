@@ -1,4 +1,4 @@
-# Part1
+# CSharp Part1
 [C# Study](https://www.csharpstudy.com/)
 
 ## 1. C# program source code example
@@ -331,7 +331,6 @@ enum 타입은 숫자형 타입과 호환이 가능하다. 만약 enum 타입의
         }
       }
     }
-
 
 ## 7. 연산자
 
