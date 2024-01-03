@@ -118,7 +118,7 @@ ASP.NET Core API를 만드는 방법에는 컨트롤러 기반 API와 최소 API
     
 
 ## 2. 컨트롤 기반 API
-![img.png](./img/img.png)
+![img.png](.img/img.png)
 - Controller가 Endpoint 라우터 관리하면서, 요청에 따라 Service에서 메소드 끌어다 사용
 - Model이 데이터의 포맷을 정의
 - Service는 Model과 Controller 사이에서 핵심 비즈니스 로직을 정의
