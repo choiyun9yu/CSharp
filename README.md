@@ -103,6 +103,7 @@ NuGet은 .NET 플랫폼 전용 패키지 관리자이다. NuGet을 사용하면 
 ## 3. Build
 
     % dotnet build
+    % dotnet build -r osx-arm64 // for m1 MacOS
 
 ### 3-1. MSIL
 커맨드 창에 dotnet build를 입력하면 가장먼저 MSIL이 프로젝트 소스 코드를 컴파일한다. MSIL은 중간 언어로 .NET 환경에서 실행될 수 있는 언어이다.
